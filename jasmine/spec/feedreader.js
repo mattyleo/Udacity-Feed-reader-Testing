@@ -126,7 +126,8 @@ $(function() {
             });
         });
     });
-
+    
+    //the first feed on innerHTML will be compared with the new feed.
     it("content change", ((done) => {
         let newFeed = document.querySelector(".feed").innerHTML;
         expect(firstFeed).not.toBe(newFeed);
