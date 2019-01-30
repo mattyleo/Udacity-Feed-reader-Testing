@@ -32,10 +32,10 @@ $(function() {
          * and that the URL is not empty.
          */
         it('url defined', function() {
-            for(let feed of allFeeds) {
-                expect(feed.url).toBeDefined();
-                expect(feed.url.length).not.toBe(0);
-            }
+            allFeeds.forEach(feed => {
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe(0);
+            });
         });
 
 
@@ -97,9 +97,15 @@ $(function() {
                 done();
         });
 
-        it('element present', function () {
-            expect('.feed .entry'.length).not.toBe(0);
-        });
+        it("contain at least an element", ((done) => {
+            let entries = document.querySelector(".feed").getElementsByClassName("entry");
+            let listOfEntries = entries.length;
+            // Make sure that there are more than 0 entries
+            expect(listOfEntries).not.toBe(0);
+            done();
+        }));
+
+
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -109,26 +115,22 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-
-        let initialFeed;
-
+        
+        let firstFeed;
         beforeEach(function(done) {
             // load first feed
-            loadFeed(0, function() {
-                initialFeed = document.querySelector('.feed');
-
-                //load second feed
-                loadFeed(1, function() {
+            loadFeed(0, () => {
+                let firstFeed = document.querySelector('.feed').innerHTML;
+                loadFeed(1, () => {
                     done();
-                });
             });
         });
+    });
 
-        it('a new feed is loaded', function() {
-            let newFeed = document.querySelector('.feed');
-            expect('newFeed'.length).not.toBe('initialFeed'.length);
-
-        });
-
+    it("content change", ((done) => {
+        let newFeed = document.querySelector(".feed").innerHTML;
+        expect(firstFeed).not.toBe(newFeed);
+        done();
+        }));
     });
 }());
