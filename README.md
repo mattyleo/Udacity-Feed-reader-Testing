@@ -11,7 +11,7 @@ ensure you've installed **_node.js_**. For more details, please refer to [node.j
 locate to the project folder root and open it using any code editor, from there you can **install http-server** from the terminal using **npm** command line: _npm install -g http-server_ or you can download any **live server** extension from your code editor.
 At this point you can visit http://127.0.0.1:3000 to view your app
 
-### Test each feeds
+## Test each feeds
 create a loop that check if the allFeeds has a defined URL and it's not empty and to the same for the name
 
 ### Test "The Menu"
